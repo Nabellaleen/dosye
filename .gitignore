@@ -1,0 +1,13 @@
+# Setuptools build
+build
+dist
+
+# IDE
+.idea
+
+# Python 3
+*.egg-info/
+__pycache__
+
+# Order details
+order.md
