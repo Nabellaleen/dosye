@@ -10,5 +10,3 @@ setup(
     ],
     scripts=['scripts/lukofs'],
 )
-
-
