@@ -20,7 +20,7 @@ class ForbiddenFileAccessException(FilesManagerException):
     def __init__(self, file):
         self.file = file
         self.message = (
-            f"The target file is outside the configured folder: {file}")
+            f"The targeted file is outside the configured folder: {file}")
 
 
 class FilesManager:
@@ -29,6 +29,10 @@ class FilesManager:
 
     def __init__(self, folder):
         self.folder = Path(folder)
+
+    def __contains__(self, item):
+        file = self.folder / item
+        return not self.folder.relpathto(file).startswith('..')
 
     def save(self, file):
         file_name = secure_filename(file.filename)
@@ -46,12 +50,11 @@ class FilesManager:
             raise FolderConfigException
 
     def delete(self, filename):
+        if filename not in self:
+            raise ForbiddenFileAccessException(file)
+
         file = self.folder / filename
         if not file.exists():
             raise FileNotFoundError(2, 'File not found', str(file))
-
-        is_outside_folder = self.folder.relpathto(file).startswith('..')
-        if is_outside_folder:
-            raise ForbiddenFileAccessException(file)
 
         file.remove()

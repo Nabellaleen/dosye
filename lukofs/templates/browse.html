@@ -23,8 +23,12 @@
   Vue.component('file-item', {
     props: ['file'],
     template:`
-       <li class="list-group-item">
-        {{ file.filename }}
+      <li class="list-group-item">
+        <a :href="'/download/' + file.filename"
+           class="download" title="Download">
+          <i class="fas fa-download"></i>
+          {{ file.filename }}
+        </a>
         <button v-on:click="deleteFile"
                 type="button" class="close" title="Delete">
           &times;
@@ -32,9 +36,9 @@
       </li>`,
     methods: {
       deleteFile: function (event) {
+        event.preventDefault();
         let vm = this;
         let filename = this.file.filename;
-        event.preventDefault();
         fetch('/delete/'+encodeURIComponent(filename))
           .then(res => res.json())
           .then(res => {

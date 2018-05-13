@@ -1,5 +1,5 @@
 # Import from flask
-from flask import render_template, redirect, url_for, request, flash, jsonify
+from flask import render_template, redirect, url_for, request, flash, jsonify, send_from_directory
 
 # Import from lukofs
 from lukofs import app
@@ -59,3 +59,13 @@ def delete_file(filename):
             'error': 'Unknown error',
             'exception': str(e),
         })
+
+
+@app.route('/download/<filename>')
+def download_file(filename):
+    file_manager = app.config['FILES_MANAGER']
+    if filename not in file_manager:
+        flash(f'File not found: {filename}', 'error')
+        return redirect(url_for('browse'))
+    return send_from_directory(file_manager.folder, filename,
+                               as_attachment=True, attachment_filename=filename)
