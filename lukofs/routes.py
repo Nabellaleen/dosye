@@ -1,5 +1,5 @@
 # Import from flask
-from flask import render_template, redirect, url_for, request, flash
+from flask import render_template, redirect, url_for, request, flash, jsonify
 
 # Import from lukofs
 from lukofs import app
@@ -37,3 +37,25 @@ def browse():
             'filename': str(file.name),
         })
     return render_template('browse.html', files=files_ns)
+
+
+@app.route('/delete/<filename>')
+def delete_file(filename):
+    try:
+        file_manager = app.config['FILES_MANAGER']
+        file_manager.delete(filename)
+        return jsonify({
+            'status': 'success',
+            'filename': filename,
+        })
+    except FilesManagerException as e:
+        return jsonify({
+            'status': 'error',
+            'error': e.message,
+        })
+    except BaseException as e:
+        return jsonify({
+            'status': 'error',
+            'error': 'Unknown error',
+            'exception': str(e),
+        })

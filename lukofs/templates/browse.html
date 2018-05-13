@@ -1,18 +1,19 @@
+{% extends "layout.html" %}
+{% block body %}
+
 <head>
   <title>LukoFS - Upload a file</title>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
 </head>
 
-{% extends "layout.html" %}
-{% block body %}
-
 <div id="app">
-  <ul>
+  <ul class="list-group">
     <file-item
       v-for="file in files"
       v-bind:file="file"
-      v-bind:key="file.id">
+      v-bind:key="file.id"
+      v-on:remove-file-item="removeFile">
     </file-item>
   </ul>
 </div>
@@ -21,14 +22,45 @@
 
   Vue.component('file-item', {
     props: ['file'],
-    template: '<li>{{ file.filename }}</li>'
+    template:`
+       <li class="list-group-item">
+        {{ file.filename }}
+        <button v-on:click="deleteFile"
+                type="button" class="close" title="Delete">
+          &times;
+        </button>
+      </li>`,
+    methods: {
+      deleteFile: function (event) {
+        let vm = this;
+        let filename = this.file.filename;
+        event.preventDefault();
+        fetch('/delete/'+encodeURIComponent(filename))
+          .then(res => res.json())
+          .then(res => {
+            if(res.status === undefined || res.status === 'error') {
+              // TODO : handle errors
+              console.error(res);
+            } else {
+              vm.$emit('remove-file-item', filename);
+            }
+          });
+      }
+    }
   });
 
   let app = new Vue({
-      el: '#app',
-      data: {
-          files: ${ files|tojson }
+    el: '#app',
+    data: {
+      files: ${ files|tojson }
+    },
+    methods: {
+      removeFile: function (filename) {
+        this.files = this.files.filter(file => {
+           return filename != file.filename;
+        });
       }
+    }
   });
 </script>
 
