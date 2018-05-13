@@ -18,3 +18,22 @@ def upload():
     elif request.method == 'POST':
         goto = handle_upload_request(request, app.config['UPLOAD_FOLDER'])
         return redirect(goto)
+
+
+@app.route('/browse')
+def browse():
+    files = [
+        {
+            'id': 0,
+            'text': 'image_001.jpg',
+        },
+        {
+            'id': 1,
+            'text': 'readme.txt',
+        },
+        {
+            'id': 2,
+            'text': 'icon.png',
+        },
+    ]
+    return render_template('browse.html', files=files)

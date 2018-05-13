@@ -22,8 +22,8 @@
         <div class="container">
           {% for category, message in messages %}
             {% set category_cls = class_mapping.get(category, 'alert-primary') %}
-            <div class="alert {{ category_cls }}">
-              {{ message }}
+            <div class="alert ${ category_cls }">
+              ${ message }
             </div>
           {% endfor %}
         </div>

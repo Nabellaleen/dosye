@@ -1,7 +1,9 @@
 #!/usr/bin/env python
+
+# Import from standard library
+from io import open
 from setuptools import setup
 
-from io import open
 
 with open('lukofs/__init__.py', 'r') as f:
     for line in f:

@@ -1,0 +1,35 @@
+<head>
+  <title>LukoFS - Upload a file</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+</head>
+
+{% extends "layout.html" %}
+{% block body %}
+
+<div id="app">
+  <ul>
+    <file-item
+      v-for="file in files"
+      v-bind:file="file"
+      v-bind:key="file.id">
+    </file-item>
+  </ul>
+</div>
+
+<script type="application/javascript">
+
+  Vue.component('file-item', {
+    props: ['file'],
+    template: '<li>{{ file.filename }}</li>'
+  });
+
+  let app = new Vue({
+      el: '#app',
+      data: {
+          files: ${ files|tojson }
+      }
+  });
+</script>
+
+{% endblock %}
