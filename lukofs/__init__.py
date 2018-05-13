@@ -1,3 +1,5 @@
+__version__ = '0.0.1'
+
 from uuid import uuid4
 from flask import Flask
 

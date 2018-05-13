@@ -1,8 +1,10 @@
-# Luko File Server
+Luko File Server
+================
 
-A little webserver to store some files
+A little webserver to store and manage some files
 
-## Production
+Production
+----------
 
 ### Installation
 
@@ -13,7 +15,8 @@ A little webserver to store some files
 
     lukofs
 
-## Development
+Development
+-----------
 
 For development, sources are symlinked to site-packages and
 flask is launched in debug mode, which enable traceback reports

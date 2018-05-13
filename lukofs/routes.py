@@ -16,4 +16,5 @@ def upload():
     if request.method == 'GET':
         return render_template('upload.html')
     elif request.method == 'POST':
-        return handle_upload_request(request, app.config['UPLOAD_FOLDER'])
+        goto = handle_upload_request(request, app.config['UPLOAD_FOLDER'])
+        return redirect(goto)
