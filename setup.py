@@ -9,7 +9,8 @@ with open('lukofs/__init__.py', 'r') as f:
             version = line.strip().split('=')[1].strip(' \'"')
             break
     else:
-        raise EnvironmentError('No __version__ found in lukofs package (lukofs/__init__.py)')
+        raise EnvironmentError(
+            'No __version__ found in lukofs package (lukofs/__init__.py)')
 
 setup(
     name='lukofs',

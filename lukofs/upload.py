@@ -18,8 +18,9 @@ def handle_upload_request(request, folder):
     try:
         file.save(os.path.join(folder, filename))
     except FileNotFoundError:
-        flash("Error while saving the file - Please check server configuration: "
-              "UPLOAD_FOLDER must exists and have correct rights", 'error')
+        flash("Error while saving the file - Please check "
+              "server configuration: UPLOAD_FOLDER must "
+              "exists and have correct rights", 'error')
         return request.url
     flash(f"File sucessfully uploaded: {filename}", 'success')
     return url_for('upload')

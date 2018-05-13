@@ -25,6 +25,7 @@ and live reload from sources.
 ### Installation
 
     cd lukofs/
+    pip install -r requirements-dev.txt
     pip install -e .
     export FLASK_APP=lukofs
     export FLASK_ENV=development
@@ -32,3 +33,9 @@ and live reload from sources.
 ### Usage
 
     flask run
+
+### Quality
+
+Ensure code conventions by using flake8:
+
+    flake8
