@@ -1,12 +1,12 @@
-# Import from standard library
-import os
-
 # Import from flask
 from flask import flash, url_for
-from werkzeug.utils import secure_filename
+
+# Import from lukofs
+from lukofs import app
+from lukofs.files import FilesManagerException
 
 
-def handle_upload_request(request, folder):
+def handle_upload_request(request):
     if 'file' not in request.files:
         flash('Select a file before trying to upload it', 'error')
         return request.url
@@ -14,13 +14,13 @@ def handle_upload_request(request, folder):
     if file.filename == '':
         flash('Select a file before trying to upload it', 'error')
         return request.url
-    filename = secure_filename(file.filename)
+
+    files_manager = app.config['FILES_MANAGER']
     try:
-        file.save(os.path.join(folder, filename))
-    except FileNotFoundError:
-        flash("Error while saving the file - Please check "
-              "server configuration: UPLOAD_FOLDER must "
-              "exists and have correct rights", 'error')
+        file_name = files_manager.save(file)
+    except FilesManagerException as e:
+        flash(e.message, 'error')
         return request.url
-    flash(f"File sucessfully uploaded: {filename}", 'success')
+
+    flash(f"File sucessfully uploaded: {file_name}", 'success')
     return url_for('upload')

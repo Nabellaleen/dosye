@@ -25,6 +25,7 @@ setup(
     packages=['lukofs'],
     install_requires=[
         'flask',
+        'path.py',
     ],
     scripts=['scripts/lukofs'],
 )

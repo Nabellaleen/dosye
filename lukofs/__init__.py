@@ -30,7 +30,7 @@ class CustomFlask(Flask):
     })
 
 app = CustomFlask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['FILES_MANAGER'] = FilesManager(UPLOAD_FOLDER)
 app.secret_key = str(uuid4())
 
 import lukofs.routes  # noqa: F401
