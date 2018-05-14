@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  lukofs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    volumes:
+      - ${LUKOFS_UPLOADS_PATH}:/var/lukofs/uploads
+    command: flask run --host=0.0.0.0
