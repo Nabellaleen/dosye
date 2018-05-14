@@ -3,6 +3,7 @@ from uuid import uuid4
 
 # Import from flask
 from flask import Flask
+from flask_menu import Menu
 
 # Import from lukofs
 from lukofs.files import FilesManager
@@ -32,5 +33,7 @@ class CustomFlask(Flask):
 app = CustomFlask(__name__)
 app.config['FILES_MANAGER'] = FilesManager(UPLOAD_FOLDER)
 app.secret_key = str(uuid4())
+
+Menu(app=app)
 
 import lukofs.routes  # noqa: F401

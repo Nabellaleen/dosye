@@ -1,5 +1,6 @@
 # Import from flask
 from flask import render_template, redirect, url_for, request, flash, jsonify, send_from_directory
+from flask_menu import register_menu
 
 # Import from lukofs
 from lukofs import app
@@ -13,6 +14,7 @@ def index():
 
 
 @app.route('/upload', methods=['GET', 'POST'])
+@register_menu(app, '.upload', 'Upload a file')
 def upload():
     if request.method == 'GET':
         return render_template('upload.html')
@@ -22,6 +24,7 @@ def upload():
 
 
 @app.route('/browse')
+@register_menu(app, '.browse', 'Browse files')
 def browse():
     file_manager = app.config['FILES_MANAGER']
     try:
