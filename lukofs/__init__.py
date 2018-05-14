@@ -12,6 +12,7 @@ __version__ = '0.0.1'
 
 UPLOAD_FOLDER = '/var/lukofs/uploads'
 
+
 class CustomFlask(Flask):
     """
     Override default Flask configuration for Jinja2 delimiters,
@@ -22,13 +23,10 @@ class CustomFlask(Flask):
     """
     jinja_options = Flask.jinja_options.copy()
     jinja_options.update({
-        #'block_start_string': '$$',
-        #'block_end_string': '$$',
         'variable_start_string': '${',
         'variable_end_string': '}',
-        #'comment_start_string': '$#',
-        #'comment_end_string': '#$',
     })
+
 
 app = CustomFlask(__name__)
 app.config['FILES_MANAGER'] = FilesManager(UPLOAD_FOLDER)

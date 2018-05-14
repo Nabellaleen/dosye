@@ -15,6 +15,7 @@ class FolderConfigException(FilesManagerException):
             "server configuration: UPLOAD_FOLDER must "
             "exists and have correct rights")
 
+
 class ForbiddenFileAccessException(FilesManagerException):
 
     def __init__(self, file):
@@ -51,7 +52,7 @@ class FilesManager:
 
     def delete(self, filename):
         if filename not in self:
-            raise ForbiddenFileAccessException(file)
+            raise ForbiddenFileAccessException(filename)
 
         file = self.folder / filename
         if not file.exists():

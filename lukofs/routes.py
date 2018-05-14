@@ -1,5 +1,6 @@
 # Import from flask
-from flask import render_template, redirect, url_for, request, flash, jsonify, send_from_directory
+from flask import flash, jsonify, send_from_directory
+from flask import render_template, redirect, url_for, request
 from flask_menu import register_menu
 
 # Import from lukofs
@@ -70,5 +71,6 @@ def download_file(filename):
     if filename not in file_manager:
         flash(f'File not found: {filename}', 'error')
         return redirect(url_for('browse'))
-    return send_from_directory(file_manager.folder, filename,
-                               as_attachment=True, attachment_filename=filename)
+    return send_from_directory(
+        file_manager.folder, filename,
+        as_attachment=True, attachment_filename=filename)
