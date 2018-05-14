@@ -10,7 +10,7 @@ from lukofs.files import FilesManager
 
 __version__ = '0.0.1'
 
-UPLOAD_FOLDER = '/home/florian/tmp/lukofs/uploads'
+UPLOAD_FOLDER = '/var/lukofs/uploads'
 
 class CustomFlask(Flask):
     """
