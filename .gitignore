@@ -4,6 +4,7 @@ dist
 
 # IDE
 .idea
+.vscode
 
 # Python 3
 *.egg-info/

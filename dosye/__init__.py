@@ -5,12 +5,12 @@ from uuid import uuid4
 from flask import Flask
 from flask_menu import Menu
 
-# Import from lukofs
-from lukofs.files import FilesManager
+# Import from dosye
+from dosye.files import FilesManager
 
 __version__ = '0.0.1'
 
-UPLOAD_FOLDER = '/var/lukofs/uploads'
+UPLOAD_FOLDER = '/var/dosye/uploads'
 
 
 class CustomFlask(Flask):
@@ -34,4 +34,4 @@ app.secret_key = str(uuid4())
 
 Menu(app=app)
 
-import lukofs.routes  # noqa: F401
+import dosye.routes  # noqa: F401

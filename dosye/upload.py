@@ -1,9 +1,9 @@
 # Import from flask
 from flask import flash, url_for
 
-# Import from lukofs
-from lukofs import app
-from lukofs.files import FilesManagerException
+# Import from dosye
+from dosye import app
+from dosye.files import FilesManagerException
 
 
 def handle_upload_request(request):

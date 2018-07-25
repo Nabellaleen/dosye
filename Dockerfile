@@ -1,7 +1,7 @@
 FROM python:3.6
 
-ENV SRC /lukofs
-ENV FLASK_APP lukofs
+ENV SRC /dosye
+ENV FLASK_APP dosye
 ENV FLASK_RUN_PORT=5000
 
 ADD . ${SRC}

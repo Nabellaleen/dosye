@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from lukofs import app
+from dosye import app
 
 if __name__ == '__main__':
     app.run()

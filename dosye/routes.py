@@ -3,10 +3,10 @@ from flask import flash, jsonify, send_from_directory
 from flask import render_template, redirect, url_for, request
 from flask_menu import register_menu
 
-# Import from lukofs
-from lukofs import app
-from lukofs.files import FilesManagerException
-from lukofs.upload import handle_upload_request
+# Import from dosye
+from dosye import app
+from dosye.files import FilesManagerException
+from dosye.upload import handle_upload_request
 
 
 @app.route('/')
