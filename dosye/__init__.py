@@ -16,10 +16,10 @@ UPLOAD_FOLDER = '/var/dosye/uploads'
 class CustomFlask(Flask):
     """
     Override default Flask configuration for Jinja2 delimiters,
-    in order to be compatible with VueJS delimiters.
+    in order to be compatible with VueJS & AngularJS delimiters.
 
     Flask Jinja2 delimiters: ${ ... }
-    VueJS delimiters: {{ ... }}
+    VueJS / AngularJS delimiters: {{ ... }}
     """
     jinja_options = Flask.jinja_options.copy()
     jinja_options.update({

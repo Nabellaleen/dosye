@@ -1,7 +1,7 @@
 DOSYE - File Server
 ===================
 
-A little webserver to store and manage some files
+A little webserver in Python3 to store and manage some files
 
 Docker - The easy way
 ---------------------
@@ -49,6 +49,18 @@ flask is launched in debug mode, which enable traceback reports
 and live reload from sources.
 
 You should create manually the /var/dosye/uploads directory.
+
+### Virtualenv
+
+You should setup a virtual environment to keep dosye dependancies 
+independant of your system.
+
+#### pew
+
+    git clone https://github.com/bepatient-fr/dosye.git
+    cd dosye
+    pew new --python python3 dosye
+    pew setproject .
 
 ### Installation
 

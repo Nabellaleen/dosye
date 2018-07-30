@@ -24,9 +24,9 @@ def upload():
         return redirect(goto)
 
 
-@app.route('/browse')
-@register_menu(app, '.browse', 'Browse files')
-def browse():
+@app.route('/browse/vue')
+@register_menu(app, '.browse_vue', 'Browse files (Vue.js)')
+def browse_vue():
     file_manager = app.config['FILES_MANAGER']
     try:
         files = file_manager.get_files()
@@ -40,7 +40,26 @@ def browse():
             'id': i,
             'filename': str(file.name),
         })
-    return render_template('browse.html', files=files_ns)
+    return render_template('browse_vue.html', files=files_ns)
+
+
+@app.route('/browse/angularjs')
+@register_menu(app, '.browse_angularjs', 'Browse files (AngularJS)')
+def browse_angularjs():
+    file_manager = app.config['FILES_MANAGER']
+    try:
+        files = file_manager.get_files()
+    except FilesManagerException as e:
+        flash(e.message, 'error')
+        files = []
+
+    files_ns = []
+    for i, file in enumerate(files):
+        files_ns.append({
+            'id': i,
+            'filename': str(file.name),
+        })
+    return render_template('browse_angularjs.html', files=files_ns)
 
 
 @app.route('/delete/<filename>')
