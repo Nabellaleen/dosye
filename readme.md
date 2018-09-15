@@ -48,7 +48,10 @@ For development, sources are symlinked to site-packages and
 flask is launched in debug mode, which enable traceback reports
 and live reload from sources.
 
-You should create manually the /var/dosye/uploads directory.
+You should create manually the /var/dosye/uploads directory and attribute correctly the rights.
+
+    sudo mkdir -p /var/dosye/uploads
+    sudo chown -R $USER:$USER /var/dosye
 
 ### Virtualenv
 
