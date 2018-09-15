@@ -52,19 +52,53 @@ You should create manually the /var/dosye/uploads directory.
 
 ### Virtualenv
 
-You should setup a virtual environment to keep dosye dependancies 
+You should setup a virtual environment to keep dosye dependancies
 independant of your system.
 
-#### pew
+If you're not familiar with virtual environments, here are instructions to use pew or pipenv, which are both a tool to manage virtual environnements easily. Feel free to choose one and follow the given explanations.
+
+#### pew 
+    
+To install pew, check https://pypi.org/project/pew/
+
+Then checkout the project and create the virtualenv :
 
     git clone https://github.com/bepatient-fr/dosye.git
     cd dosye
     pew new --python python3 dosye
     pew setproject .
 
-### Installation
+To activate the virtualenv :
+
+    pew workon dosye
+
+After activation, any python command is executed in this virtual environnementm isolated from the operating system (python, pip, ...).
+
+To leave the virtualenv, use `ctrl-D` or `exit`.
+
+#### pipenv
+
+To install pipenv, check https://pipenv.readthedocs.io/en/latest/
+
+Then checkout the project and create the virtualenv :
 
     git clone https://github.com/bepatient-fr/dosye.git
+    cd dosye
+    pipenv --python python3
+
+To activate the virtualenv :
+
+    cd dosye
+    pipenv shell
+
+After activation, any python command is executed in this virtual environnementm isolated from the operating system (python, pip, ...).
+
+To leave the virtualenv, use `ctrl-D` or `exit`.
+
+### Installation
+
+With the virtualenv activated, follow these steps :
+
     cd dosye
     pip install -r requirements-dev.txt
     pip install -e .
